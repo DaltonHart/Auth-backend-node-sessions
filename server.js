@@ -4,6 +4,9 @@ const express = require("express"),
   session = require("express-session"),
   cors = require("cors");
 
+// Internal Modules
+const routes = require("./routes");
+
 // Instanced Modules
 const app = express();
 
@@ -56,6 +59,9 @@ app.use(cors(corsOptions));
 app.get("/", (req, res) => {
   res.send("<h1>Welcome to Auth Api</h1>");
 });
+
+// Auth
+app.use("/api/v1/auth", routes.auth);
 
 // Start Server
 
