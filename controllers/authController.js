@@ -7,7 +7,6 @@ module.exports = {
   // POST register
   register: (req, res) => {
     const { errors, notValid } = validate(req.body);
-    console.log(req.body);
     if (notValid)
       return errorResponse(
         res,

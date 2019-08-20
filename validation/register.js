@@ -1,5 +1,4 @@
 module.exports = ({ username, email, password, password2 }) => {
-  console.log({ username, email, password, password2 });
   const errors = [];
 
   if (!username) errors.push({ message: "Please enter your username" });
