@@ -8,7 +8,7 @@ const express = require("express"),
 const app = express();
 
 // System Variables
-const PORT = proccess.env.PORT || 4000;
+const PORT = process.env.PORT || 4000;
 
 // MIDDLEWARE //
 
@@ -21,11 +21,15 @@ app.use((req, res, next) => {
   const log = {
     url: req.url,
     method: req.method,
-    requestedAt: new Date().toLocaleString()
+    requestedAt: new Date().toLocaleString(),
+    status: req.statusCode
   };
+  // prettier-ignore
   console.log(
-    `method: ${log.method} - url: ${log.url} - time: ${log.requestedAt}`
+    "\x1b[36m",
+    `method: "${log.method}" - status: "${log.statusCode}" url: "${log.url}" - time: "${log.requestedAt}"`
   );
+
   next();
 });
 
@@ -45,3 +49,16 @@ const corsOptions = {
   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 };
 app.use(cors(corsOptions));
+
+// Routes
+
+// GET Root
+app.get("/", (req, res) => {
+  res.send("<h1>Welcome to Auth Api</h1>");
+});
+
+// Start Server
+
+app.listen(PORT, () =>
+  console.log(`Server running at http://localhost:${PORT}`)
+);
