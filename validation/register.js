@@ -1,21 +1,14 @@
-module.exports = req => {
+module.exports = ({ username, email, password, password2 }) => {
+  console.log({ username, email, password, password2 });
   const errors = [];
 
-  if (!req.body.name) {
-    errors.push({ message: "Please enter your name" });
-  }
+  if (!username) errors.push({ message: "Please enter your username" });
 
-  if (!req.body.email) {
-    errors.push({ message: "Please enter your email" });
-  }
+  if (!email) errors.push({ message: "Please enter your email" });
 
-  if (!req.body.password) {
-    errors.push({ message: "Please enter your password" });
-  }
+  if (!password) errors.push({ message: "Please enter your password" });
 
-  if (req.body.password !== req.body.password2) {
-    errors.push({ message: "Passwords must match" });
-  }
+  if (password !== password2) errors.push({ message: "Passwords must match" });
 
   return {
     errors,
