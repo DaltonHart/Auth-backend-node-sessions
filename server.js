@@ -24,13 +24,12 @@ app.use((req, res, next) => {
   const log = {
     url: req.url,
     method: req.method,
-    requestedAt: new Date().toLocaleString(),
-    status: req.statusCode
+    requestedAt: new Date().toLocaleString()
   };
   // prettier-ignore
   console.log(
     "\x1b[36m",
-    `method: "${log.method}" - status: "${log.statusCode}" url: "${log.url}" - time: "${log.requestedAt}"`
+    `method: "${log.method}" - url: "${log.url}" - time: "${log.requestedAt}"`
   );
 
   next();
@@ -62,6 +61,8 @@ app.get("/", (req, res) => {
 
 // Auth
 app.use("/api/v1/auth", routes.auth);
+// Users
+app.use("/api/v1/users", routes.users);
 
 // Start Server
 
