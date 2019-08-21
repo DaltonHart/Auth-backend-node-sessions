@@ -11,6 +11,6 @@ module.exports = router
   // POST Login
   .post("/login", ctrl.auth.login)
   // Post Verify
-  .post("/verify", ctrl.auth.verify)
+  .post("/verify", authRequired, ctrl.auth.verify)
   // Post Logout
-  .post("/logout", authRequired, ctrl.auth.logout);
+  .post("/logout", ctrl.auth.logout);
